@@ -185,7 +185,7 @@ def hello_world():
             <div style="width:100%;height:280px;">
                 <div style="width:15px;height:100%;background-color:#090;float:left" id="bian92b1"></div>
                 <div style="width:320px;height:100%;float:left;text-align:center;">
-                    <img src="https://cranb3rry.github.io/verceltest/blue.png"
+                    <img src="blue.png"
                         style="height:280px;border:0px;" id="img916" />
                 </div>
                 <div style="width:14px;height:100%;background-color:#090;float:right" id="bian92b2"></div>
