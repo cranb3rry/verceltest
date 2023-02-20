@@ -167,12 +167,12 @@ strin = '''<!DOCTYPE html>
             <div style="width:100%;height:15px;background-color:#090;" id="bian92c"></div>
             <div style="width:100%;height:7px;BACKGROUND-IMAGE: url(https://jksb.v.zzu.edu.cn/images/split5.png)"></div>
             <div style="width:100%;height:116px;">
-                <!-- <div style="width:100%;height:80px;" id="msg11a">
+                <div style="width:100%;height:80px;" id="msg11a">
                     <div class="hes1"><br />不再检测核酸时间</div>
                     <div style="width:20px;height:100%;float:left"></div>
                     <div class="yim1"><br />新冠疫苗接种<br />3剂次</div>
                     <div style="width:2px;height:100%;float:right"></div>
-                </div> -->
+                </div>
                 <div class="bar916">
                     <div style="width:50%;height:100%;float:left;font-size:12px;color:#666;line-height:20px;"
                         id="msg11b"></div>
