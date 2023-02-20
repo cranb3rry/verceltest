@@ -3,6 +3,7 @@ import requests
 import os
 import re
 from bs4 import BeautifulSoup
+import time
 
 app = Flask(__name__)
 
@@ -31,34 +32,7 @@ data ={
     "door": ""
 }
 
-def get_change():
-    a = requests.post("https://jksb.v.zzu.edu.cn/vls6sss/zzujksb.dll/login",headers=headers,data=data)
-    soup = BeautifulSoup(a.text, 'html.parser')
-    datas = soup.find('script')
-    datas = datas.string
-    pattern = re.compile(r'window.location="(http.*?)"', re.I | re.M)
-    url = pattern.findall(datas)
-    if len(url) == 0:
-        return None
-    else:
-        b = requests.get(url[0],headers=header2)
-        color = list(set(re.findall('style.backgroundColor="(.*?)"',b.text)))
-        num = re.findall('title316_(.*?).png',b.text)
-        if len(color)<2 or len(num) < 1:
-            return None
-        return color,num
-
-
-@app.route('/blue.png')
-def get_png():
-    with open("blue.png","rb") as f:
-        image = f.read()
-    return Response(image, mimetype="image/jpeg")
-    
-@app.route('/')
-def hello_world():
-    return '''<!DOCTYPE html>
-
+strin = '''<!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport"
@@ -75,7 +49,6 @@ def hello_world():
             WIDTH: 350px;
             min-HEIGHT: 540px;
         }
-
         .hes1 {
             width: 165px;
             height: 100%;
@@ -87,7 +60,6 @@ def hello_world():
             float: left;
             border-radius: 10px;
         }
-
         .hes2 {
             width: 165px;
             height: 100%;
@@ -99,7 +71,6 @@ def hello_world():
             float: left;
             border-radius: 10px;
         }
-
         .yim1 {
             width: 165px;
             height: 100%;
@@ -111,7 +82,6 @@ def hello_world():
             float: left;
             border-radius: 10px;
         }
-
         .yim2 {
             width: 165px;
             height: 100%;
@@ -123,7 +93,6 @@ def hello_world():
             float: left;
             border-radius: 10px;
         }
-
         .bar916 {
             width: 100%;
             height: 36px;
@@ -146,15 +115,15 @@ def hello_world():
             tt1--;
             if (tt1 >= 0) {
                 if ((tt1 % 2) == 1) {
-                    document.getElementById('bian92a').style.backgroundColor = "#bfffc8";
-                    document.getElementById('bian92b1').style.backgroundColor = "#bfffc8";
-                    document.getElementById('bian92b2').style.backgroundColor = "#bfffc8";
-                    document.getElementById('bian92c').style.backgroundColor = "#bfffc8";
+                    document.getElementById('bian92a').style.backgroundColor = "REPLACECOLOR1";
+                    document.getElementById('bian92b1').style.backgroundColor = "REPLACECOLOR1";
+                    document.getElementById('bian92b2').style.backgroundColor = "REPLACECOLOR1";
+                    document.getElementById('bian92c').style.backgroundColor = "REPLACECOLOR1";
                 } else {
-                    document.getElementById('bian92a').style.backgroundColor = "#090";
-                    document.getElementById('bian92b1').style.backgroundColor = "#090";
-                    document.getElementById('bian92b2').style.backgroundColor = "#090";
-                    document.getElementById('bian92c').style.backgroundColor = "#090";
+                    document.getElementById('bian92a').style.backgroundColor = "REPLACECOLOR2";
+                    document.getElementById('bian92b1').style.backgroundColor = "REPLACECOLOR2";
+                    document.getElementById('bian92b2').style.backgroundColor = "REPLACECOLOR2";
+                    document.getElementById('bian92c').style.backgroundColor = "REPLACECOLOR2";
                 }
                 tt2 = tt1 % 60;
                 tt3 = (tt1 - tt2) / 60;
@@ -165,14 +134,12 @@ def hello_world():
             document.getElementById("msg11b").innerHTML = "正在获取郑好办防疫信息...";
             document.getElementById("zzj_fun_916s").src = "/vls6sss/zzujksb.dll/getzhbofmen?ptopid=****&sid=*****";
         }
-
     </script>
 </head>
-
 <body>
     <form method="POST" name="myform52" action="">
         <div id="bak_0">
-            <div style="width:100%;height:88px;background:url(https://jksb.v.zzu.edu.cn/imagesss/title316_94339.png);">
+            <div style="width:100%;height:88px;background:url(https://jksb.v.zzu.edu.cn/imagesss/title316_REPLACENUM.png);">
             </div>
             <div style="width:100%;height:7px;BACKGROUND-IMAGE: url(https://jksb.v.zzu.edu.cn/images/split5.png)"></div>
             <div style="width:100%; min-height:90px;">
@@ -183,7 +150,7 @@ def hello_world():
                         href="/vls6sss/zzujksb.dll/logout?ptopid=s*****B"><span
                             style="font-size:12px;;color:#00c;">〖切换账号〗</span></a><br />北校区大门东门.<span
                         style="background-color:#070;color:#ff0">入口</span><br />身份：正常出入校园本科生<span
-                        style="font-size:12px;color:#333;">(02月20日 01:07获取)</span><br />
+                        style="font-size:12px;color:#333;">REPLACESTRING</span><br />
                         <!-- <span
                         style="color:#f00;font-size:12px">提醒：未检索到你今日出校记录</span> -->
                 </div>
@@ -218,7 +185,6 @@ def hello_world():
             <div style="width:100%;min-height:18px;line-height:18px;font-size:12px;color:#666;text-align:center">
                 郑州大学疫情防控领导小组、保卫处、信息化办公室</div>
         </div>
-
         <div style="width:1px;height:1px;">
             <iframe name="zzj_fun_426" id="zzj_fun_426s" src="" marginwidth="0" marginheight="0" height="100%"
                 width="100%" scrolling="no" border="0" frameborder="0" allowtransparency="true"></iframe>
@@ -226,9 +192,38 @@ def hello_world():
         <input type="hidden" name="ptopid" value="s****B"><input type="hidden" name="sid"
             value="***">
     </form>
-
     <div style="width:100%;height:50px;"></div>
 </body>
-
 </html>'''
 
+def get_change():
+    a = requests.post("https://jksb.v.zzu.edu.cn/vls6sss/zzujksb.dll/login",headers=headers,data=data)
+    soup = BeautifulSoup(a.text, 'html.parser')
+    datas = soup.find('script')
+    datas = datas.string
+    pattern = re.compile(r'window.location="(http.*?)"', re.I | re.M)
+    url = pattern.findall(datas)
+    if len(url) == 0:
+        return None
+    else:
+        b = requests.get(url[0],headers=header2)
+        color = list(set(re.findall('style.backgroundColor="(.*?)"',b.text)))
+        num = re.findall('title316_(.*?).png',b.text)
+        if len(color)<2 or len(num) < 1:
+            return None
+        return color,num
+
+
+@app.route('/blue.png')
+def get_png():
+    with open("blue.png","rb") as f:
+        image = f.read()
+    return Response(image, mimetype="image/jpeg")
+    
+@app.route('/')
+def hello_world():
+    changes = get_change()
+    if changes == None:
+        return '''Not Avaliable'''
+    else:
+        return strin.replace("REPLACECOLOR1",changes[0][0]).replace("REPLACECOLOR2",changes[0][1]).replace("REPLACENUM",changes[1][0]).replace("REPLACESTRING",time.strftime("(%m月%d日 %H:%M获取)",time.localtime()))
