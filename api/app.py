@@ -51,7 +51,8 @@ def get_change():
 
 @app.route('/blue.png')
 def get_png():
-    image = file("blue.png")
+    with open("blue.png","rb") as f:
+        image = f.read()
     return Response(image, mimetype="image/jpeg")
     
 @app.route('/')
