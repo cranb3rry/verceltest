@@ -227,3 +227,12 @@ def hello_world():
         return '''Not Avaliable'''
     else:
         return strin.replace("REPLACECOLOR1",changes[0][0]).replace("REPLACECOLOR2",changes[0][1]).replace("REPLACENUM",changes[1][0]).replace("REPLACESTRING",time.strftime("(%m月%d日 %H:%M获取)",time.localtime(time.time()+3600*8)))
+    
+@app.route('/out')
+def out():
+    changes = get_change()
+    if changes == None:
+        return '''Not Avaliable'''
+    else:
+        return strin.replace("REPLACECOLOR1",changes[0][0]).replace("REPLACECOLOR2",changes[0][1]).replace("REPLACENUM",changes[1][0]).replace("REPLACESTRING",time.strftime("(%m月%d日 %H:%M获取)",time.localtime(time.time()+3600*8))).replace("#070","#c0c").replace("入口","出口")
+    
