@@ -226,4 +226,4 @@ def hello_world():
     if changes == None:
         return '''Not Avaliable'''
     else:
-        return strin.replace("REPLACECOLOR1",changes[0][0]).replace("REPLACECOLOR2",changes[0][1]).replace("REPLACENUM",changes[1][0]).replace("REPLACESTRING",time.strftime("(%m月%d日 %H:%M获取)",time.localtime()))
+        return strin.replace("REPLACECOLOR1",changes[0][0]).replace("REPLACECOLOR2",changes[0][1]).replace("REPLACENUM",changes[1][0]).replace("REPLACESTRING",time.strftime("(%m月%d日 %H:%M获取)",time.localtime(time.time()+3600*8)))
