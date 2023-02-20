@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,Response
 import requests
 import os
 import re
@@ -48,6 +48,12 @@ def get_change():
             return None
         return color,num
 
+
+@app.route('/blue.png')
+def get_png():
+    image = file("blue.png")
+    return Response(image, mimetype="image/jpeg")
+    
 @app.route('/')
 def hello_world():
     return '''<!DOCTYPE html>
