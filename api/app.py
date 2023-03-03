@@ -151,8 +151,8 @@ strin = '''<!DOCTYPE html>
                             style="font-size:12px;;color:#00c;">〖切换账号〗</span></a><br />北校区大门东门.<span
                         style="background-color:#070;color:#ff0">入口</span><br />身份：正常出入校园本科生<span
                         style="font-size:12px;color:#333;">REPLACESTRING</span><br />
-                        <!-- <span
-                        style="color:#f00;font-size:12px">提醒：未检索到你今日出校记录</span> -->
+                        <span
+                        style="color:#f00;font-size:12px">提醒：未检索到你今日出校记录</span>
                 </div>
             </div>
             <div style="width:100%;height:15px;background-color:#090;" id="bian92a"></div>
